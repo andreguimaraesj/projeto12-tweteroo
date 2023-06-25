@@ -1,16 +1,21 @@
 import express from 'express';
 import cors from 'cors';
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+
 
 const tweets = [];
 const usuarios = [];
 
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+
+
+
 app.get("/tweets", (req,res) =>{
     const page = parseInt(req.query.page);
-    if(page === undefined){
+    if(isNaN(page)){
         let ultimosTweets = []
         ultimosTweets = tweets.slice(-10);
 
